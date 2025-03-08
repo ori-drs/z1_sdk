@@ -23,6 +23,12 @@ if(catkin_FOUND)
     ${catkin_INCLUDE_DIRS}
   )
 
+  # Need to add Z1_SDK_${CMAKE_SYSTEM_PROCESSOR} as a shared library to be accessible to other packages
+  add_library(Z1_SDK_${CMAKE_SYSTEM_PROCESSOR} SHARED IMPORTED)
+  set_target_properties(Z1_SDK_${CMAKE_SYSTEM_PROCESSOR} PROPERTIES
+    IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/lib/libZ1_SDK_${CMAKE_SYSTEM_PROCESSOR}.so
+  )
+
   catkin_package(
     INCLUDE_DIRS include
     LIBRARIES Z1_SDK_${CMAKE_SYSTEM_PROCESSOR}
